@@ -9,7 +9,6 @@ const routes: Routes = [
   {path: "comptes",component : ComptesComponent},
   {path: "new-client",component : NewClientComponent}
 
-
 ];
 
 @NgModule({

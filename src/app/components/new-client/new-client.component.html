@@ -1,15 +1,25 @@
 <div class="container">
-  <div class="card col-md-6 offset-3 mt-2">
-    <div class="card-header">Nouveau client</div>
+  <div class="card col-md-6 offset-3 ">
+
     <div  class="card-body">
       <form [formGroup]="newClientForm" (ngSubmit)="saveClient()">
         <div class="mb-3">
           <label class="form-label"> Nom : </label>
           <input type="text" formControlName="name" class="form-control">
+          <span class="text-danger"
+          *ngIf="newClientForm.controls['name'].touched
+           && newClientForm.controls['name'].errors
+            && newClientForm.controls['name'].errors!['required'] ">
+            Nom est obligatoire  </span>
         </div>
         <div class="mb-3">
           <label class="form-label"> Email : </label>
           <input type="text" formControlName="email" class="form-control">
+          <span class="text-danger"
+                *ngIf="newClientForm.controls['email'].touched
+           && newClientForm.controls['email'].errors
+            && newClientForm.controls['email'].errors!['email'] ">
+            email ni pas validé  </span>
         </div>
          <button [disabled]="!newClientForm.valid" class="btn btn-info" >enregistrer</button>
       </form>

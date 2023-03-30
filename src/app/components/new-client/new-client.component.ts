@@ -2,6 +2,7 @@
  import {FormBuilder, FormGroup, Validators} from "@angular/forms";
  import {client} from "../../model/client.module";
  import {ClientService} from "../../services/client.service";
+ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-client',
@@ -10,7 +11,9 @@
 })
 export class NewClientComponent implements OnInit{
    newClientForm! : FormGroup;
-  constructor(private fb : FormBuilder,private clientService:ClientService){}
+  constructor(private fb : FormBuilder,private clientService:ClientService,private  router:Router){
+
+  }
   ngOnInit(): void {
     this.newClientForm=this.fb.group({
       name :this.fb.control(null,[Validators.required,Validators.minLength(6)]),
@@ -24,6 +27,8 @@ export class NewClientComponent implements OnInit{
        .subscribe({
          next : data=>{
            alert("enregistrement est succes");
+           this.newClientForm.reset();
+           this.router.navigateByUrl("/clients");
          },
          error : err=>{
            alert("enregistrement echoué");

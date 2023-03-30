@@ -1,7 +1,17 @@
 <div class="container mt-2">
   <ng-container *ngIf="clients | async as listclient ;else failureOrloading" >
     <div class="card">
-    <div class="card-header">Clients</div>
+    <div class="card-header">
+      <div class="input-group">
+         Liste Des Clients:
+      <button (click)="status = !status" class="btn btn-info m-auto " > ajouter client
+        <i class="bi bi-plus-circle" ></i>
+      </button>
+      </div>
+      <div *ngIf="status">
+        <app-new-client></app-new-client>
+      </div>
+    </div>
     <div class="card-body">
       <div *ngIf="searchFormGroup">
         <form [formGroup]="searchFormGroup" (ngSubmit)="searchClient()">
@@ -29,7 +39,7 @@
           <td>{{c.name}}</td>
           <td>{{c.email}}</td>
           <td>
-            <button (click)="deleteClient(c.id)" class="btn btn-danger">
+            <button (click)="deleteClient(c)" class="btn btn-danger">
               <i class="bi bi-trash"></i>
             </button>
           </td>
@@ -49,4 +59,5 @@
         loading.....
     </ng-template>
   </ng-template>
+
     </div>
