@@ -3,12 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {client} from "../model/client.module";
 import {ClientsComponent} from "../components/clients/clients.component";
+import {envirenement} from "../envirenements/envirenement";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
-   host : string="http://localhost:8085/";
+
+   host : string=envirenement.url;
   constructor(private http: HttpClient) { }
   public getClients():Observable<Array<client>>{
     return this.http.get<Array<client>>(this.host+"customers")
