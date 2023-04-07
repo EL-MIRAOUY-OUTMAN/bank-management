@@ -8,7 +8,7 @@ export interface detailCompte {
 }
 
 export interface AccountOperation {
-  id:            number;
+  id: number;
   operationDate: Date;
   amount:        number;
   type:          string;
